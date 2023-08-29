@@ -1,13 +1,98 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+  color: #FFF;
+}
+
+.App {
+  background-color: #0E1323;
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow: scroll; 
+}
+
+.profile-card.card {
+  height: 34.5rem;
+  position: static;
+}
+
+.profile {
+  height: 23.6rem;
+  background-color: #5747EA;
+  border-radius: 1rem;
+}
+
+.profile img {
+  height: 5.2rem;
+  width: 5.2rem;
+  border: 3px white solid;
+  border-radius: 50%;
+}
+
+.task-folder {
+  position: relative;
+  width: 17rem;
+}
+
+.Work {
+  background-color: #FF8B64;
+  background-image: url("./images/icon-work.svg");
+}
+
+.Play {
+  background-color: #55C2E6;
+  background-image: url("./images/icon-play.svg");
+}
+
+.Study {
+  background-color: #FF5E7D;
+  background-image: url("./images/icon-study.svg");
+}
+
+.Exercise {
+  background-color: #4BCF82;
+  background-image: url("./images/icon-exercise.svg");
+  background-position: top -0.5rem;
+}
+
+.Social {
+  background-color: #7335D2;
+  background-image: url("./images/icon-social.svg");
+}
+
+.Self.Care {
+  background-color: #F1C75B;
+  background-image: url("./images/icon-self-care.svg");
+}
+
+.task-folder span {
+  display: block;
+  height: 16.25rem;
+  border-radius: 1rem;
+  background-repeat: no-repeat;
+  background-position: top -0.65rem left 10.6rem;
+  /* overflow: hidden; */
+}
+
+/* .task-folder img {
+  position: relative;
+  left: 10.6rem;
+  top: -0.65rem;
+  display: none;
+} */
+
+.card {
+  position: absolute;
+  z-index: 10;
+  top: 45px;
+  background-color: #1C204B;
+  border-radius: 1rem;
+  height: 13.3rem;
+  width: 17rem;
 }
