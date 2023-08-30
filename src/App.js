@@ -12,11 +12,27 @@ function App() {
   const [selectedTimeframe, setSelectedTimeframe] = useState("weekly");
 
   useEffect(() => {
-
-  });
+    let selected;
+    switch (selectedTimeframe) {
+      case "daily":
+        document.querySelector("#daily").style.color = "white";
+        break;
+      case "weekly":
+        document.querySelector("#weekly").style.color = "white";
+        break;
+      case "monthly":
+        document.querySelector("#monthly").style.color = "white";
+    }
+    return () => {
+      document.querySelector("#daily").style.color = "#7078C9";
+      document.querySelector("#weekly").style.color = "#7078C9";
+      document.querySelector("#monthly").style.color = "#7078C9";
+    }
+  }, [selectedTimeframe]);
 
   function handleClick(event) {
     const selected = event.target.innerHTML;
+
     switch (selected) {
       case "Daily":
         setSelectedTimeframe("daily");
@@ -41,9 +57,9 @@ function App() {
           </div>
           <nav>
             <ul>
-              <li onClick={handleClick}>Daily</li>
-              <li onClick={handleClick}>Weekly</li>
-              <li onClick={handleClick}>Monthly</li>
+              <li id="daily" onClick={handleClick}>Daily</li>
+              <li id="weekly" onClick={handleClick}>Weekly</li>
+              <li id="monthly" onClick={handleClick}>Monthly</li>
             </ul>
           </nav>
         </section>

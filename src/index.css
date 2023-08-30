@@ -206,8 +206,10 @@ h2 {
 
 @media only screen and (max-width: 599px) {
   main {
-    grid-template-columns: repeat(1, 22rem);
-    grid-template-rows: 13.3rem repeat(6, 10.5rem);
+    width: 95%;
+    margin: auto;
+    grid-template-columns: repeat(1, minmax(0, 22rem));
+    grid-template-rows: 13.3rem repeat(6, minmax(0, 10.5rem));
     grid-template-areas: 
       "profile"
       "card"
