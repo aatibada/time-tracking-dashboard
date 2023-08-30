@@ -12,18 +12,32 @@ html {
 
 .App {
   background-color: #0E1323;
-  min-width: 100vw;
-  min-height: 100vh;
-  overflow: scroll; 
+
 }
 
-.profile-card.card {
-  height: 34.5rem;
-  position: static;
+main {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(4, 17rem);
+  grid-template-rows: repeat(2, 16.25rem);
+  grid-template-areas: 
+  "profile card card card"
+  "profile card card card";
+  gap: 2rem;
+  justify-content: center;
+  align-content: center;
+}
+
+.profile-card {
+  grid-area: profile;
+  background-color: #1C204B;
+  border-radius: 1rem;
 }
 
 .profile {
-  height: 23.6rem;
+  padding: 2.1333333333rem;
+  height: 70%;
   background-color: #5747EA;
   border-radius: 1rem;
 }
@@ -31,68 +45,194 @@ html {
 .profile img {
   height: 5.2rem;
   width: 5.2rem;
-  border: 3px white solid;
+  border: 0.2rem white solid;
   border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+h1 span {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #BBC0FF;
+  display: block;
+}
+
+h1 {
+  font-size: 2.6rem;
+  font-weight: 300;
+  margin: 1.5rem 0; 
+}
+
+nav {
+  height: 30%;
+}
+
+
+nav ul {
+  padding: 1.75rem 1.5rem;
+}
+
+nav li {
+  color: #7078C9;
+  list-style: none;
+  font-size: 1.2rem;
+  margin: 0.75rem 0;
+  width: fit-content;
+  cursor: default;
+}
+
+nav li:hover {
+  cursor: pointer;
+  color: #FFF;
 }
 
 .task-folder {
   position: relative;
-  width: 17rem;
+  width: 100%;
+  height: 100%;
 }
 
-.Work {
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.time .current {
+  font-size: 3.75rem;
+  font-weight: 300;
+  margin: 0.5rem 0;
+}
+
+.time .previous {
+  color: #BBC0FF;
+  font-weight: 400;
+}
+
+
+#Work span {
   background-color: #FF8B64;
   background-image: url("./images/icon-work.svg");
 }
 
-.Play {
+#Play span {
   background-color: #55C2E6;
   background-image: url("./images/icon-play.svg");
 }
 
-.Study {
+#Study span{
   background-color: #FF5E7D;
   background-image: url("./images/icon-study.svg");
 }
 
-.Exercise {
+#Exercise span{
   background-color: #4BCF82;
   background-image: url("./images/icon-exercise.svg");
-  background-position: top -0.5rem;
+  background-position: top -0.1rem right 1.15rem;
 }
 
-.Social {
+#Social span {
   background-color: #7335D2;
   background-image: url("./images/icon-social.svg");
 }
 
-.Self.Care {
+#SelfCare span {
   background-color: #F1C75B;
   background-image: url("./images/icon-self-care.svg");
 }
 
 .task-folder span {
   display: block;
-  height: 16.25rem;
+  height: 40%;
+  background-position: top -0.65rem right 1.15rem;
   border-radius: 1rem;
   background-repeat: no-repeat;
-  background-position: top -0.65rem left 10.6rem;
-  /* overflow: hidden; */
 }
 
-/* .task-folder img {
-  position: relative;
-  left: 10.6rem;
-  top: -0.65rem;
-  display: none;
-} */
-
 .card {
+  padding: 2rem;
+  grid-area: card;
   position: absolute;
   z-index: 10;
-  top: 45px;
+  top: 3rem;
   background-color: #1C204B;
   border-radius: 1rem;
-  height: 13.3rem;
-  width: 17rem;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  background: #33397A;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1149px) {
+  main {
+    padding: 5rem 0;
+    grid-template-columns: repeat(2, 17rem);
+    grid-template-rows: repeat(4, 16.25rem);
+    grid-template-areas: 
+      "profile profile"
+      "card card"
+      "card card"
+      "card card";
+  }
+
+  .profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .profile img {
+    margin: 0;
+  }
+
+  .profile-card ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  main {
+    grid-template-columns: repeat(1, 22rem);
+    grid-template-rows: 13.3rem repeat(6, 10.5rem);
+    grid-template-areas: 
+      "profile"
+      "card"
+      "card"
+      "card"
+      "card"
+      "card"
+      "card";
+  }
+
+  .profile {
+    justify-content: space-between;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .time {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .time .current {
+    font-size: 2.15rem;
+  }
 }

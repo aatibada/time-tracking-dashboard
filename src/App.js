@@ -1,5 +1,5 @@
 // Import UseState
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // Import data
 import data from "./data.json";
@@ -10,6 +10,10 @@ import ellipsisIcon from "./images/icon-ellipsis.svg";
 
 function App() {
   const [selectedTimeframe, setSelectedTimeframe] = useState("weekly");
+
+  useEffect(() => {
+
+  });
 
   function handleClick(event) {
     const selected = event.target.innerHTML;
@@ -28,10 +32,12 @@ function App() {
   return (
     <div className="App">
       <main>
-        <section className="profile-card card">
+        <section className="profile-card">
           <div className="profile">
             <img src={profileImg} alt="Picture of Jeremy" />
-            <h1>Report for Jeremy Robson</h1>
+            <h1>
+              <span>Report for</span> Jeremy Robson
+            </h1>
           </div>
           <nav>
             <ul>
@@ -41,56 +47,57 @@ function App() {
             </ul>
           </nav>
         </section>
-        <section className="cards">
-          {data.map((category) => {
-            switch (selectedTimeframe) {
-              case "daily":
-                return (
-                  <Card
-                    key={category.title}
-                    title={category.title}
-                    timeframe={category.timeframes.daily}
-                  />
-                );
-              case "weekly":
-                return (
-                  <Card
-                    key={category.title}
-                    title={category.title}
-                    timeframe={category.timeframes.weekly}
-                  />
-                );
-              case "monthly":
-                return (
-                  <Card
-                    key={category.title}
-                    title={category.title}
-                    timeframe={category.timeframes.monthly}
-                  />
-                );
-            }
-          })}
-        </section>
+        {data.map((category) => {
+          return (
+            <Card
+              key={category.title}
+              title={category.title}
+              timeframes={category.timeframes}
+              selectedTimeframe={selectedTimeframe}
+            />
+          );
+        })}
       </main>
     </div>
   );
 };
 
-function Card(props) {
+function Card({ title, timeframes, selectedTimeframe }) {
+  const id = title.replace(" ", "");
+
+  function currentTime() {
+    switch (selectedTimeframe) {
+      case "daily":
+        return timeframes.daily.current;
+      case "weekly":
+        return timeframes.weekly.current;
+      case "monthly":
+        return timeframes.monthly.current;
+    }
+  };
+
+  function previousTime() {
+    switch (selectedTimeframe) {
+      case "daily":
+        return `Yesterday - ${timeframes.daily.previous}hrs`;
+      case "weekly": 
+        return `Last Week - ${timeframes.weekly.previous}hrs`;
+      case "monthly":
+        return `Last Month - ${timeframes.monthly.previous}hrs`;
+    }
+  };
 
   return (
-    <section className="task-folder">
-      <span className={props.title}>
-        {/* <img src={workIcon} alt="Suitcase icon" /> */}
-      </span>
+    <section id={id} className="task-folder">
+      <span></span>
       <div className="card">
-        <div className="header">
-          <h2>{props.title}</h2>
-          <img src={ellipsisIcon} alt="Ellipsis icon" />
+        <div className="heading">
+          <h2>{title}</h2>
+          <img src={ellipsisIcon} alt="Ellipsis icon" id="ellipsis"/>
         </div>
         <div className="time">
-          <p className="current">{props.timeframe.current}hrs</p>
-          <p className="previous">{props.timeframe.previous}hrs</p>
+          <p className="current">{currentTime()}hrs</p>
+          <p className="previous">{previousTime()}</p>
         </div>
       </div>
     </section>
