@@ -4,15 +4,13 @@ import { useState, useEffect } from "react";
 // Import data
 import data from "./data.json";
 
-// Import images
+// Import image
 import profileImg from "./images/image-jeremy.png";
-import ellipsisIcon from "./images/icon-ellipsis.svg";
 
 function App() {
   const [selectedTimeframe, setSelectedTimeframe] = useState("weekly");
 
   useEffect(() => {
-    let selected;
     switch (selectedTimeframe) {
       case "daily":
         document.querySelector("#daily").style.color = "white";
@@ -84,18 +82,26 @@ function Card({ title, timeframes, selectedTimeframe }) {
   function currentTime() {
     switch (selectedTimeframe) {
       case "daily":
-        return timeframes.daily.current;
+        if (timeframes.daily.current !== 1) {
+          return `${timeframes.daily.current}hrs`;
+        } else {
+          return `${timeframes.daily.current}hr`;
+        }
       case "weekly":
-        return timeframes.weekly.current;
+        return`${timeframes.weekly.current}hrs`;
       case "monthly":
-        return timeframes.monthly.current;
+        return`${timeframes.monthly.current}hrs`;
     }
   };
 
   function previousTime() {
     switch (selectedTimeframe) {
       case "daily":
-        return `Yesterday - ${timeframes.daily.previous}hrs`;
+        if (timeframes.daily.previous !== 1) {
+          return `Yesterday - ${timeframes.daily.previous}hrs`;
+        } else {
+          return `Yesterday - ${timeframes.daily.previous}hr`;
+        }
       case "weekly": 
         return `Last Week - ${timeframes.weekly.previous}hrs`;
       case "monthly":
@@ -109,10 +115,16 @@ function Card({ title, timeframes, selectedTimeframe }) {
       <div className="card">
         <div className="heading">
           <h2>{title}</h2>
-          <img src={ellipsisIcon} alt="Ellipsis icon" id="ellipsis"/>
+          <svg width="21" height="5" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M2.5 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Zm8 0a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5Z"
+              fill="#BBC0FF"
+              fill-rule="evenodd"
+            />
+          </svg>
         </div>
         <div className="time">
-          <p className="current">{currentTime()}hrs</p>
+          <p className="current">{currentTime()}</p>
           <p className="previous">{previousTime()}</p>
         </div>
       </div>

@@ -12,7 +12,6 @@ html {
 
 .App {
   background-color: #0E1323;
-
 }
 
 main {
@@ -171,6 +170,10 @@ h2 {
 .card:hover {
   background: #33397A;
   cursor: pointer;
+}
+
+svg:hover path {
+  fill: #FFF;
 }
 
 @media only screen and (max-width: 1149px) {
